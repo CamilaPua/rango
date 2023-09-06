@@ -1,6 +1,8 @@
 import os
-os.environ.setdefault('DJANDO_SETTINGS_MODULE',
-                      'tango_with_django_project.settings')
+os.environ.setdefault(
+                        'DJANGO_SETTINGS_MODULE',
+                        'tango_with_django_project.settings'
+                )
 
 import django
 django.setup()
@@ -57,8 +59,17 @@ def populate():
 
         for p in cat_data['pages']:
             add_page(c, p['title'], p['url'])
-    
+
+
+    update_views_and_likes('Python',128, 64)
+
+    update_views_and_likes('Django',64, 32)
+
+    update_views_and_likes('Other Frameworks',32, 16)
+
+
     for c in Category.objects.all():
+        print(f'Category: {c}\n\tViews: {c.views}\tLikes: {c.likes}')
         for p in Page.objects.filter(category=c):
             print(f'- {c}: {p}')
 
@@ -75,6 +86,13 @@ def add_cat(name):
     c = Category.objects.get_or_create(name=name)[0]
     c.save()
     return c
+
+
+def update_views_and_likes(object, views, likes):
+    o = Category.objects.get(name=object)
+    o.views = views
+    o.likes = likes
+    o.save()
 
 
 if __name__ == '__main__':

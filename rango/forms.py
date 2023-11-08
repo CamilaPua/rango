@@ -28,7 +28,7 @@ class PageForm(forms.ModelForm):
     def clean(self):
         cleaned_data = self.cleaned_data
         url = cleaned_data.get('url')
-        url = re.sub(r"https?\/+", url)
+        url = re.sub(r"http[s]:[\/]+","", url)
         if url:
             url = f'https://{url}'
             cleaned_data['url'] = url

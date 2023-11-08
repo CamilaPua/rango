@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+{% load rango_template_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rango - 
+        {% block title_block %}
+            How to Tango with Django!
+        {% endblock %}
+    </title>
+    <style>
+        /* Estilo para el footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+        /* Estilo para los enlaces en el footer */
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        {% block body_block %}
+            This is the body_block's default content.
+        {% endblock %}
+    </div>
+    <div>
+        {% block sidebar_block %}
+            {% get_category_list category %}
+        {% endblock %}
+    </div>
+    <br>
+    <footer>
+        <a href="{% url 'rango:index' %}">Homepage</a>
+        <a href="{% url 'rango:add_category' %}">Add a New Category</a>
+        <a href="{% url 'rango:about' %}">About</a><br />
+    </footer>
+</body>
+</html>

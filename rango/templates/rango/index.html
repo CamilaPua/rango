@@ -1,14 +1,9 @@
+{% extends 'rango/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rango</title>
-</head>
+{% block title_block %}Homepage{% endblock %}
 
-<body>
+{% block body_block %}
     <h1>Rango says...</h1>
     <div>
         <p>
@@ -22,7 +17,7 @@
         {% if categories %}
             <ul>
                 {% for category in categories %}
-                    <li><a href="category/{{ category.slug }}/">{{ category }}</a></li>
+                    <li><a href="{% url 'rango:show_category' category.slug %}">{{ category }}</a></li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -41,10 +36,4 @@
             <strong>There are no pages present.</strong>
         {% endif %}
     </div>
-    <div>
-        <a href="add_category/">Add a New Category</a><br />
-        <a href="about/">About</a><br />
-    </div>
-</body>
-
-</html>
+{% endblock %}

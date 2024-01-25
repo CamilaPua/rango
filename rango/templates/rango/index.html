@@ -9,7 +9,13 @@
         <p>
             <img src="{% static 'rango/rango.jpg' %}" alt="picture of Rango and her"><br />
         </p>
-        Hey there partner<br />
+
+        {% if user.is_authenticated %}
+            Howdy {{ user.username }}
+        {% else %}
+            Hey there partner
+        {% endif %}<br />
+
         <strong>{{ aboldmessage }}</strong>
     </div>
     <div>

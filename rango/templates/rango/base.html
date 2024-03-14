@@ -47,10 +47,11 @@
         <a href="{% url 'rango:add_category' %}">Add a New Category</a>
         <a href="{% url 'rango:restricted' %}">Restricted page</a>
         {% if user.is_authenticated %}
-        <a href="{% url 'rango:logout' %}">Logout</a><br />
+            <a href="{% url 'auth_logout' %}?next={% url 'rango:index'%}">Logout</a><br />
+            <a href="{% url 'auth_password_change' %}">Change password</a>
         {% else %}
-            <a href="{% url 'rango:register' %}">Sign up</a>
-            <a href="{% url 'rango:login' %}">Login</a>
+            <a href="{% url 'registration_register' %}">Sign up</a>
+            <a href="{% url 'auth_login' %}">Login</a>
         {% endif %}
     </footer>
 </body>

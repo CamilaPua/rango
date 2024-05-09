@@ -8,6 +8,7 @@ from django.urls import reverse
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm
 from rango.forms import UserForm, UserProfileForm
+from rango.search import run_query
 
 
 def index(request):
@@ -173,3 +174,14 @@ def visitor_cookie_handler(request):
     else:
         request.session['last_visit'] = last_visit_cookie
     request.session['visits'] = visits
+
+
+def search(request):
+    query = ""
+    result_list = []
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+    if query:
+        # Run our Bing function to get the results list!
+        result_list = run_query(query)
+    return render(request, 'rango/search.html', {'result_list': result_list})

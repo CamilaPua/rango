@@ -4,19 +4,22 @@
 {% block title_block %}Homepage{% endblock %}
 
 {% block body_block %}
-    <h1>Rango says...</h1>
-    <div>
-        <p>
-            <img src="{% static 'rango/rango.jpg' %}" alt="picture of Rango and her"><br />
-        </p>
-
-        {% if user.is_authenticated %}
-            Howdy {{ user.username }}
-        {% else %}
-            Hey there partner
-        {% endif %}<br />
-
-        <strong>{{ aboldmessage }}</strong>
+<div>
+    <div class="container-fluid py-3">
+        <div class="row bg-light rounded-3">
+            <h1 class="display-5 fw-bold">Rango says...</h1>
+            <p class="col-md-8 fs-4">
+                {% if user.is_authenticated %}
+                    howdy {{ user.username }}!
+                {% else %}
+                    hey there partner!
+                {% endif %}
+            </p>
+            <div>
+                <img src="{% static 'images/rango.jpg' %}" />
+            </div>
+            <strong>{{ aboldmessage }}</strong>
+        </div>
     </div>
     <div>
         <h2>Most Liked Categories</h2>
@@ -42,7 +45,5 @@
             <strong>There are no pages present.</strong>
         {% endif %}
     </div>
-    <div>
-        <p>Visits: {{ visits }}</p>
-    </div>
+</div>
 {% endblock %}
